@@ -1,49 +1,42 @@
-import React ,{useState} from 'react';
-import { SafeAreaView ,View, Switch ,Text} from 'react-native';
-import Card from './app/component/Card';
-import ListeningDetailScreen from './app/screen/ListeningDetailScreen';
-import ListItem from './app/component/list/ListItem';
-import WelcomeScreen from './app/screen/WelcomeScreen';
-import ViewImage from './app/screen/ViewImage';
-import MessagesScreens from './app/screen/MessagesScreens';
-import AccountScreen from './app/screen/AccountScreen';
-import ListingScreen from './app/screen/ListingScreen';
-import TextInput from './app/screen/TextInput';
-import AppTextInput from './app/component/AppTextInput';
-import AppPicker from './app/component/AppPicker';
+import React ,{ useState , useEffect } from 'react';
+import { SafeAreaView ,View, Switch ,Text, Button , Image} from 'react-native';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
 import Screens from './app/component/Screens';
-import Icon from './app/component/Icon';
-import LoginScreen from './app/screen/LoginScreen';
-import RegisterScreen from './app/screen/RegisterScreen';
-import ListingEditScreen from './app/screen/ListingEditScreen';
-
+import ImageInput from './app/component/ImageInput';
 
 
 function App() {
+const [ imageUri ,setImageUri] = useState('');
+
+const requestPermission = async()=>{
+// const result = await Permissions.askAsync( Permissions.CAMERA_ROLL.Permissions.Location )
+   const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
+    if(!granted){
+      alert('you need to enable permission to access the library ')
+    }
+}
+ useEffect(() => {
+  requestPermission();
+}, [])
+
+const selectImage = async()=>{
+ try {
+  const result = await ImagePicker.launchImageLibraryAsync();
+  if(!result.cancelled) setImageUri(result.uri);
+  } catch (error) {
+  console.log("Error reading an image ", error)
+  }
+  };
 
 return (
-
-  // <ListingEditScreen />
-   <RegisterScreen />
-/* <LoginScreen /> */
-  
-
-    // <AppTextInput placeholder= "UserName " icon ="email"/>
-    // <ListingScreen />
-    /* <AccountScreen /> */
-    //  <Screens>
-    //  <ListItem  
-    //   title="My Title"
-    //   ImageComponent = <Icon  name="email"/>
-    //  />
-    //  {/* <Icon name="email" size={50} backgroundColor="red" iconColor="white"/>  */}
-
-    //  </Screens>
-    //  <ListeningDetailScreen />
-    //  <WelcomeScreen />
-    //  <ViewImage />
-    //  <MessagesScreens />
-  );
+<Screens>
+{/* <Button title="Select Image" onPress= {selectImage }></Button>
+<Image source= {{  uri: imageUri }} style= {{ width : 200, height :200}}/> */}
+<ImageInput imageUri = {imageUri }
+ onChangeImage = {(uri)=> setImageUri(uri) }/>
+</Screens>
+   );
 }
 
 export default App;

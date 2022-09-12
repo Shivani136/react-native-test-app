@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet,View} from 'react-native';
 import AppPicker from '../AppPicker';
 import ErrorMessage from './ErrorMessage';
 import { useFormikContext } from 'formik';
@@ -14,7 +13,7 @@ function AppFormPicker({
     }) {
 
  const { setFieldValue ,values , errors, touched }  =  useFormikContext();
-    return (
+   return (
         <>
         <AppPicker 
         items = { items}
@@ -28,6 +27,14 @@ function AppFormPicker({
         <ErrorMessage error = {errors[name]} visible={ touched[name]}/>
         </>
     );
+
+    
 }
 
 export default AppFormPicker;
+
+
+
+
+
+

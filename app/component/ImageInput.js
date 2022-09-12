@@ -1,70 +1,80 @@
-import React , { useEffect} from 'react';
-import { StyleSheet,View,Image ,TouchableWithoutFeedback , Alert} from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import colors from '../config/colors';
-import * as ImagePicker from 'expo-image-picker';
+import React, { useEffect } from "react";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback,
+  Alert,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 
-function ImageInput({imageUri, onChangeImage}) {
+import colors from "../config/colors";
 
-    // useEffect(() => {
-    //     requestPermission();
-    //   }, [])
+function ImageInput({ imageUri, onChangeImage }) {
+ 
+ const requestPermission = async () => {
+     //const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
+    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!granted) alert("You need to enable permission to access the library.");
+  };
 
-    // const requestPermission = async()=>{
-    //    const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
-    //         if(!granted){
-    //           alert('you need to enable permission to access the library ')
-    //         }
-    //     }
+  useEffect(() => {
+    requestPermission();
+  }, []);
 
-                       
-const handlePress=()=>{
-    if(!imageUri) selectImage();
+  const handlePress = () => {
+    if (!imageUri) selectImage();
     else
-     Alert.alert('Delete , are you sure want to delete this ',[
-        {text : 'yes', onPress:() => onChangeImage(null) },
-        { text : 'No'},
-    ]);
-   
-};
+      Alert.alert("Delete", "Are you sure you want to delete this image?", [
+        { text: "Yes", onPress: () => onChangeImage(null) },
+        { text: "No" },
+      ]);
+  };
 
-const selectImage = async()=>{
+  const selectImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes : ImagePicker.MediaTypeOptions.Images,
-        quality : 0.5,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 0.5,
       });
-
-      if(!result.cancelled) onChangeImage(result.uri);
-    } 
-    catch (error) {
-      console.log("Error reading an image ", error)
+      if (!result.cancelled) onChangeImage(result.uri);
+    } catch (error) {
+      console.log("Error reading an image", error);
     }
   };
-    return (
-        <TouchableWithoutFeedback onPress={handlePress}>
-        <View style= { styles.container}>
-        {!imageUri && (<MaterialCommunityIcons name="camera" size={10} color={colors.medium} />
-          )} 
-          { imageUri && <Image source = {{uri : imageUri}} style={styles.image}/>}
-        </View>
-        </TouchableWithoutFeedback>
-    );
+
+  return (
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={styles.container}>
+        {!imageUri && (
+          <MaterialCommunityIcons
+            color={colors.medium}
+            name="camera"
+            size={40}
+          />
+        )}
+        {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
+      </View>
+    </TouchableWithoutFeedback>
+  );
 }
+
 const styles = StyleSheet.create({
-    container : { 
-     alignItems : "center",
-     justifyContent : 'center',
-     height : 100,
-     width : 100,
-     backgroundColor : colors.medium,
-     borderRadius: 15,
-     overflow : 'hidden'
-     },
-     image:{
-        width : '100%',
-        height: '100%'
-     }
-})
+  container: {
+    alignItems: "center",
+    backgroundColor: colors.light,
+    borderRadius: 15,
+    justifyContent: "center",
+    marginVertical: 10,
+    overflow: "hidden",
+    width: 100,
+    height: 100,
+  },
+  image: {
+    height: "100%",
+    width: "100%",
+  },
+});
 
 export default ImageInput;

@@ -1,81 +1,74 @@
-import React from 'react';
-import { StyleSheet,View, Text, Image, FlatList} from 'react-native';
-import colors from '../config/colors';
-import Screens from '../component/Screens';
-import Icon from '../component/Icon';
-import ListItem from '../component/list/ListItem';
-import ListItemSeperator from '../component/list/ListItemSeperator';
+import React from "react";
+import { StyleSheet, View, FlatList } from "react-native";
 
+import { ListItem, ListItemSeperator } from "../component/list";
+import colors from "../config/colors";
+import Icon from "../component/Icon";
+import routes from "../navigation/routes";
+import Screen from "../component/Screens";
 
-
-function AccountScreen(props) {
-
-const menuItems = [ 
-    {
-        title: "My Listings",
-        icon :{
-            name : 'formate-list-bulleted',
-            backgroundColor : colors.primary
-        }
+const menuItems = [
+  {
+    title: "My Listings",
+    icon: {
+      name: "format-list-bulleted",
+      backgroundColor: colors.primary,
     },
-    {
-        title :"My Account",
-        icon :{
-            name : 'email',
-            backgroundColor : colors.secondary
-        }
-     }
-]
-return (
-        <Screens style={ styles.screen}>
-         <View style={ styles.container}>
-        <ListItem  
-         title="My Title"
-         subTitle = 'programmingwithmosh@gmail.com'
-         image = { require('../assets/mosh.jpg')}
-        />
-     </View>
+  },
+  {
+    title: "My Messages",
+    icon: {
+      name: "email",
+      backgroundColor: colors.secondary,
+    },
+    targetScreen: routes.MESSAGES,
+  },
+];
 
-     <View style={ styles.container}>
-     <FlatList 
-     data ={ menuItems }
-     keyExtractor = { (menuItems) => menuItems.title }
-     ItemSepratorComponent = { ListItemSeperator }
-     renderItem = {({item})=> (
-     <ListItem 
-       title={item.title}
-       IconComponent = {
-        <Icon 
-        name = {item.icon.name}
-        backgroundColor = {item.icon.backgroundColor}
-        /> 
-       }
-     
+function AccountScreen({ navigation }) {
+  return (
+    <Screen style={styles.screen}>
+      <View style={styles.container}>
+        <ListItem
+          title="Mosh Hamedani"
+          subTitle="programmingwithmosh@gmail.com"
+          image={require("../assets/mosh.jpg")}
         />
-      )}
-     />
-     </View>
-
-     <ListItem 
-       title="LogOut" 
-       IconComponent = {
-        <Icon 
-        name = "logout"
-        backgroundColor = "#ffe66d"
-        // backgroundColor = colors.yellow
-        /> 
-       }
-       />
-     </Screens>
-    );
+      </View>
+      <View style={styles.container}>
+        <FlatList
+          data={menuItems}
+          keyExtractor={(menuItem) => menuItem.title}
+          ItemSeparatorComponent={ListItemSeperator}
+          renderItem={({ item }) => (
+            <ListItem
+              title={item.title}
+              IconComponent={
+                <Icon
+                  name={item.icon.name}
+                  backgroundColor={item.icon.backgroundColor}
+                />
+              }
+              onPress={() => navigation.navigate(item.targetScreen)}
+            />
+          )}
+        />
+      </View>
+      <ListItem
+        title="Log Out"
+        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+      />
+    </Screen>
+  );
 }
- const styles = StyleSheet.create({
-    container : {
-        marginVertical : 20 
-    },
-    screen : {
-        backgroundColor : colors.light
-    }
- })
+
+const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: colors.light,
+  },
+  container: {
+    marginVertical: 20,
+  },
+});
 
 export default AccountScreen;

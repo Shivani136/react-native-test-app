@@ -16,7 +16,7 @@ const [firstName, setFirstName] = useState('');
       // secureTextEntry = { true} // for password field
       onChangeText={(text) => setFirstName(text)}
        style = {{
-        paddingTop : 10,
+        // paddingTop : 10,
         borderBottomColor : '#ccc',
         borderBottomWidth : 1
       }}/>

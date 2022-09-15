@@ -3,7 +3,7 @@ import { StyleSheet,} from 'react-native';
 import Screens from '../component/Screens';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Yup from 'yup';
-import { AppForm ,AppFormField ,SubmitButon} from  '../component/forms';
+import { AppForm ,AppFormField ,SubmitButton} from  '../component/forms';
 
 const validationSchema = Yup.object().shape({
      name : Yup.string().required().min(1).label("Name"),
@@ -27,9 +27,7 @@ function RegisterScreen(props) {
         <AppFormField 
         autoCapitalize = "none"
         autoCorrect = {false}
-        icon = "bell"
-        
-        // icon="bell"
+        icon = "account"
         keyboardType= "name"
         name = "name"
         placeholder= "Name"
@@ -54,7 +52,7 @@ function RegisterScreen(props) {
         textContentType="password"
         />
       
-       <SubmitButon title="Register"/>
+       <SubmitButton title="Register"/>
        
        </AppForm>
       </Screens>

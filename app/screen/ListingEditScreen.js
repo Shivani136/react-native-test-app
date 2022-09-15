@@ -9,7 +9,7 @@ import {
       AppForm ,
       AppFormField as FormField ,
       AppFormPicker as Picker,
-      SubmitButon,
+      SubmitButton,
       } from '../component/forms';
 
 import FormImagePicker from '../component/forms/FormImagePicker';
@@ -119,7 +119,7 @@ function ListingEditScreen() {
           numberOfLines={3}
           placeholder="Description"
         />
-        <SubmitButon title="Post" />
+        <SubmitButton title="Post" />
       </AppForm>
     </Screens>
   );

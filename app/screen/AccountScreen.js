@@ -5,7 +5,7 @@ import { ListItem, ListItemSeperator } from "../component/list";
 import colors from "../config/colors";
 import Icon from "../component/Icon";
 import routes from "../navigation/routes";
-import Screen from "../component/Screens";
+import Screens from "../component/Screens";
 
 const menuItems = [
   {
@@ -27,7 +27,7 @@ const menuItems = [
 
 function AccountScreen({ navigation }) {
   return (
-    <Screen style={styles.screen}>
+    <Screens style={styles.screen}>
       <View style={styles.container}>
         <ListItem
           title="Mosh Hamedani"
@@ -58,7 +58,7 @@ function AccountScreen({ navigation }) {
         title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
       />
-    </Screen>
+    </Screens>
   );
 }
 

@@ -17,29 +17,31 @@ function ListingScreen({ navigation }) {
   }, []);
 
   return (
-    <Screens style={styles.screen}>
-      {getListingsApi.error && (
-        <>
-          <Text>Couldn't retrieve the Listings.</Text>
-          <Button title="Retry" onPress={getListingsApi.request} />
-        </>
-      )}
-
+    <>
       <ActivityIndicator visible={getListingsApi.loading} />
-      <FlatList
-        data={getListingsApi.data}
-        keyExtractor={(listings) => listings.id.toString()}
-        renderItem={({ item }) => (
-          <Card
-            title={item.title}
-            subTitle={"$" + item.price}
-            imageUrl={item.images[0].url}
-            onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-            thumbnailUrl={item.images[0].thumbnailUrl}
-          />
+      <Screens style={styles.screen}>
+        {getListingsApi.error && (
+          <>
+            <Text>Couldn't retrieve the Listings.</Text>
+            <Button title="Retry" onPress={getListingsApi.request} />
+          </>
         )}
-      />
-    </Screens>
+
+        <FlatList
+          data={getListingsApi.data}
+          keyExtractor={(listings) => listings.id.toString()}
+          renderItem={({ item }) => (
+            <Card
+              title={item.title}
+              subTitle={"$" + item.price}
+              imageUrl={item.images[0].url}
+              onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+              thumbnailUrl={item.images[0].thumbnailUrl}
+            />
+          )}
+        />
+      </Screens>
+    </>
   );
 }
 const styles = StyleSheet.create({

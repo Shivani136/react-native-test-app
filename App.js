@@ -7,7 +7,10 @@ import AuthNavigator from "./app/navigation/AuthNavigator";
 import OfflineNotice from "./app/component/OfflineNotice";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
-import AppLoading from "expo-app-loading";
+import { navigationRef } from "./app/navigation/rootNavigation";
+import logger from "./app/utility/logger";
+
+logger.start();
 
 export default function App() {
   const [user, setUser] = useState("");
@@ -39,19 +42,11 @@ export default function App() {
 
   if (!isReady) return null;
 
-  // if (!isReady)
-  //   return (
-  //     <AppLoading startAsync={restoreToken} onFinish={() => setIsReady(true)} />
-  //   );
-
-  // useEffect(() => {
-  //   restoreToken();
-  // }, []);
-
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer
+        ref={navigationRef}
         theme={navigationTheme}
         onReady={onNavigationContainerReady}
       >

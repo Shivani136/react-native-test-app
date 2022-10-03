@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, View, Modal, Text } from "react-native";
+import { View, StyleSheet, Modal } from "react-native";
 import * as Progress from "react-native-progress";
-import colors from "../config/colors";
 import LottieView from "lottie-react-native";
+
+import colors from "../config/colors";
 
 function UploadScreen({ onDone, progress = 0, visible = false }) {
   return (
@@ -19,22 +20,24 @@ function UploadScreen({ onDone, progress = 0, visible = false }) {
             autoPlay
             loop={false}
             onAnimationFinish={onDone}
+            source={ require('../assets/Animation/done.json')}
             style={styles.animation}
-            source={require("../assets/Animation/98112-circle-loading-progress-indicator.json")}
           />
         )}
       </View>
-    </Modal>
+    </Modal> 
   );
 }
+
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-  },
   animation: {
     width: 150,
   },
+  container: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+  },
 });
+
 export default UploadScreen;

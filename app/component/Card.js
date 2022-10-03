@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableWithoutFeedback } from "react-native";
+import { View, StyleSheet,Text, TouchableWithoutFeedback } from "react-native";
 import { Image } from "react-native-expo-image-cache";
+
+//import Text from "./Text";
 import colors from "../config/colors";
-// import AppText from './AppText';
 
 function Card({ title, subTitle, imageUrl, onPress, thumbnailUrl }) {
   return (
@@ -15,8 +16,12 @@ function Card({ title, subTitle, imageUrl, onPress, thumbnailUrl }) {
           uri={imageUrl}
         />
         <View style={styles.detailsContainer}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subTitle}</Text>
+          <Text style={styles.title} numberOfLines={1}>
+            {title}
+          </Text>
+          <Text style={styles.subTitle} numberOfLines={2}>
+            {subTitle}
+          </Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -25,25 +30,24 @@ function Card({ title, subTitle, imageUrl, onPress, thumbnailUrl }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
     borderRadius: 15,
+    backgroundColor: colors.white,
     marginBottom: 20,
-    overFlow: "hidden",
+    overflow: "hidden",
   },
   detailsContainer: {
     padding: 20,
   },
-  title: {
-    marginBottom: 7,
-  },
-  subtitle: {
-    color: colors.secondary,
-    fontWeight: "bold",
-  },
   image: {
     width: "100%",
     height: 200,
-    borderRadius: 15,
+  },
+  subTitle: {
+    color: colors.secondary,
+    fontWeight: "bold",
+  },
+  title: {
+    marginBottom: 7,
   },
 });
 

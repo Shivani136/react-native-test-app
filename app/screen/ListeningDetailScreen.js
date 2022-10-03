@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
-  Text,
+  Text
 } from "react-native";
 import { Image } from "react-native-expo-image-cache";
 
@@ -20,15 +20,15 @@ function ListingDetailsScreen({ route }) {
 
   return (
     <KeyboardAvoidingView
-      behavior="position"
-      keyboardVerticalOffset={
-        Platform.OS === "ios"
-          ? 180
-          : 200 && Platform.OS === "android"
-          ? 150
-          : 250
-      }
-    >
+    behavior="position"
+    keyboardVerticalOffset={
+      Platform.OS === "ios"
+        ? 180
+        : 200 && Platform.OS === "android"
+        ? 150
+        : 250
+    }
+  >
       <Image
         style={styles.image}
         preview={{ uri: listing.images[0].thumbnailUrl }}

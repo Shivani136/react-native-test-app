@@ -21,6 +21,7 @@
     "@react-navigation/native-stack": "^6.8.0",
     "@react-navigation/stack": "^6.2.3",
     "apisauce": "^2.1.6",
+    "async-storage": "^0.1.0",
     "color-parse": "^1.4.2",
     "dayjs": "^1.11.5",
     "expo": "~46.0.9",

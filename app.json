@@ -2,8 +2,11 @@
   "expo": {
     "name": "AwesomeProject",
     "slug": "AwesomeProject",
-
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
@@ -13,7 +16,7 @@
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
-     "updates": {
+    "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
@@ -25,10 +28,10 @@
       "buildNumber": "1.0.0"
     },
     "android": {
-       "package": "com.codewithmosh.donewithit",
+      "package": "com.codewithmosh.donewithit",
       "versionCode": 1
-     },
-     "description": "A marketplace for selling the stuff you don't need anymore.",
+    },
+    "description": "A marketplace for selling the stuff you don't need anymore.",
     "notification": {
       "iosDisplayInForeground": true
     },
@@ -48,6 +51,9 @@
     "extra": {
       "bugsnag": {
         "apiKey": "0612ce43c16d63c2b0b87fe91f891759"
+      },
+      "eas": {
+        "projectId": "ff0ba100-8dd8-4ff1-8e74-639f7d8d931a"
       }
     },
     "hooks": {

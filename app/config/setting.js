@@ -2,13 +2,13 @@ import Constants from "expo-constants";
 
 const settings = {
   dev: {
-    apiUrl: "http://192.168.168.61:9000/api",
+    apiUrl: "https://demoreactnativeapp.herokuapp.com/api",
   },
   staging: {
-    apiUrl: "http://192.168.168.61:9000/api",
+    apiUrl: "https://demoreactnativeapp.herokuapp.com/api",
   },
   prod: {
-    apiUrl: "http://192.168.168.61:9000/api",
+    apiUrl: "https://demoreactnativeapp.herokuapp.com/api",
   },
 };
 
